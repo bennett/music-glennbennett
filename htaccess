@@ -1,0 +1,35 @@
+# Use PHP 8.1
+AddHandler application/x-httpd-ea-php81 .php
+
+# CodeIgniter URL Rewriting
+RewriteEngine On
+
+# Allow these files to run directly (BEFORE the main rule)
+RewriteCond %{REQUEST_URI} ^/install\.php$ [OR]
+RewriteCond %{REQUEST_URI} ^/diagnose\.php$
+RewriteRule ^ - [L]
+
+# Remove index.php from URLs
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php/$1 [L]
+
+# Protect sensitive directories
+<FilesMatch "^\.">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# MIME types for audio files
+AddType audio/mpeg mp3
+AddType audio/mp4 m4a
+AddType audio/ogg ogg
+AddType audio/wav wav
+AddType audio/flac flac
+```
+
+The key change is using `RewriteRule ^ - [L]` which says "stop processing and serve the file directly" for `install.php` and `diagnose.php`.
+
+After updating, visit:
+```
+https://music.glennbennett.com/diagnose.php

@@ -1,0 +1,37 @@
+# Credentials — these files contain passwords/keys
+application/config/database.php
+application/config/config.php
+
+# CodeIgniter Framework
+/system/
+
+# Composer Dependencies
+/vendor/
+
+# User Uploads
+/uploads/
+
+# Database Files
+/database/*.db
+/database/*.sqlite
+
+# Backups
+/backups/
+/backup_production_*/
+*.bak
+
+# Cache, Sessions, Logs
+/application/cache/*
+!/application/cache/index.html
+/application/logs/*
+!/application/logs/index.html
+
+# Environment
+.env
+.env.local
+
+# Claude Code
+.claude/
+
+# OS
+.DS_Store
